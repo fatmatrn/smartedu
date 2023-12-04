@@ -12,7 +12,7 @@ exports.createCourse= async (req,res)=>{
      }catch{
         res.status(400).json({
             status:'fail',
-            error
+            error,
         
          })
      }
