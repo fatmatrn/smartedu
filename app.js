@@ -8,14 +8,8 @@ const courseRoute = require('./routes/courseRoute')
 const app = express();
 
 //Connect DB
-mongoose.connect('mongodb://127.0.0.1:27017/smartedu-db',{
-useNewUrlParser:true,
-useUnifiedTopology:true,
-useFindAndModify:false,
-useCreateIndex:true
-}).then(()=>{
-    console.log('DB Connected Successfuly')
-});
+mongoose.connect('mongodb://127.0.0.1:27017/smartedu-db')
+  .then(() => console.log('Connected!'));
 
 
 //Templetate Engine
