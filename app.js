@@ -37,3 +37,10 @@ app.listen(port, () => {
     console.log(`Server is running on ${port}`);
 });
 
+/*
+1.adim:Controllerde yonlendirme sirasinda cagiracagimiz methodu yaziyoruz
+2.adim:Route  gecip yonlendirmeyi yaziyoruz
+3.adim:Ilgili template yi olusturuyoruz
+
+*/
+

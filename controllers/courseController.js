@@ -53,7 +53,7 @@ exports.getAllCourse = async (req, res) => {
 //get a courses
 exports.getCourse = async (req, res) => {
     try {
-        const course = await Course.findById({_id: req.params.id});//burada url deki id yi yakaliyoruz
+        const course = await Course.findOne({slug: req.params.slug});//burada url deki id yi yakaliyoruz
 
         res.status(201).render('course',{//view in icindeki courses.ejs yi render et, ve oraya yakalamis oldugum kurslari gondereceksin
             course,
