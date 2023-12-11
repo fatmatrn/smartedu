@@ -1,4 +1,5 @@
 const Course = require('../models/Course')
+const Category = require('../models/Category')
 
 exports.createCourse = async (req, res) => {
     try {
@@ -19,10 +20,16 @@ exports.createCourse = async (req, res) => {
 //get all coursse
 exports.getAllCourse = async (req, res) => {
     try {
+
+        const categorySlug = req.query.categoryes;
+
         const courses = await Course.find(req.body);
+        const categories = await Category.find(req.body);
+
 
         res.status(201).render('courses',{//view in icindeki courses.ejs yi render et, ve oraya yakalamis oldugum kurslari gondereceksin
             courses,
+            categories,
             page_name:'courses'//ayrica view e bir page_name gondererek tiklandiginda active ye sahip olacak  olan sayfayi belirlemis oluyoruz
         });
     } catch (error) {
