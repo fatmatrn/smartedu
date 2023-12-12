@@ -18,13 +18,20 @@ exports.createCourse = async (req, res) => {
 }
 //MVC  yapisinda view olarak donen version
 //get all coursse
-exports.getAllCourse = async (req, res) => {
+exports.getAllCourses = async (req, res) => {
     try {
 
-        const categorySlug = req.query.categoryes;
+        const categorySlug = req.query.categories;
 
-        const courses = await Course.find(req.body);
-        const categories = await Category.find(req.body);
+        const category =await Category.findOne({slug:categorySlug})
+        let filter = {};
+        if(categorySlug){//bu kontrolu kategorisi olmayan kurslarda gorunsun diye yapiyoruz 
+                         //kaldi ki her zaman query olmaya bilir 
+            filter={category:category._id}
+        }
+
+        const courses = await Course.find(filter);
+        const categories = await Category.find();
 
 
         res.status(201).render('courses',{//view in icindeki courses.ejs yi render et, ve oraya yakalamis oldugum kurslari gondereceksin
