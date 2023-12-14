@@ -1,12 +1,12 @@
 
+//mu middleware yi anonim function olarak olusturdugumuzda direct module nin adi ile cagirabiliyoruz
 
 module.exports = async (req, res, next) => {
   try {
-    const user = await User.findById(req.session.userID).exec();
-
-    if (!user) {
-      return res.redirect('/login');
-    }
+  if(req.session.userID){
+    return res.redirect('/')
+  }
+  //Bu middle ware login kullanicinin olmasi durumunda anasayfaya yonlendirir
 
     next();
   } catch (error) {
