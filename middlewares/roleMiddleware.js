@@ -4,7 +4,7 @@ module.exports=(roles)=>{
      if(roles.includes(userRole)){
         next();
      }else{
-        return res.status(401).send('YOU CAT DO IT')
+        return res.status(401).send('YOU CANT DO IT')
      }
     }
 }
