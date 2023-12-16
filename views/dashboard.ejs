@@ -23,16 +23,23 @@ if(user){ %> <% if(user.role==='student'){ %>
     </div>
     <!-- end row -->
     <div class="row mt-5">
+      <% for(let i=0; i < user.courses.length; i++) { %>
       <div class="col-lg-6 col-md-6 col-12">
         <div class="course-item mb-5">
           <div class="image-blog">
             <img src="/images/blog_1.jpg" alt="" class="img-fluid" />
           </div>
           <div class="course-br">
-            <div class="course-title"></div>
+            <div class="course-title">
+              <h2><a href="course-single.html"><%= user.courses[i].name  %></a></h2>
+            </div>
             <div class="course-desc">
+              <p><%= user.courses[i].name  %></p>
+            </div>
+            <div>
+
               <form action="/courses/release" method="POST">
-                <input type="hidden" name="course_id" value="" />
+                <input type="hidden" name="course_id" value="<%= user.courses[i]._id  %>" />
                 <button class="btn btn-lg btn-danger text-white">
                   <span>RELEASE</span>
                 </button>
@@ -41,6 +48,7 @@ if(user){ %> <% if(user.role==='student'){ %>
           </div>
         </div>
       </div>
+      <%}%>
       <!-- end col -->
     </div>
     <!-- end row -->

@@ -21,3 +21,11 @@ exports.getLoginPage=(req,res)=>{
         page_name:"login"
     })
 };
+exports.getContactPage=(req,res)=>{
+    res.status(200).render('contact',{
+        page_name:"contact"
+    })
+};
+exports.sendEmail=(req,res)=>{
+    console.log(req,body)
+};

@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt");
 exports.createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
+  
 
     res.status(201).redirect('/login')
   } catch (error) {
@@ -23,15 +24,11 @@ exports.LoginUser = async (req, res) => {
    
       if (user) {
         // sifreleme
-        const same = await bcrypt.compare(password, user.password);
-
-        if (same) {
-          // Kullanıcı oturumu(User Session)
+        bcrypt.compare(password, user.password);
+        // Kullanıcı oturumu(User Session)
          req.session.userID=user._id;
-
-
-          res.status(200).redirect('/users/dashboard');
-        } 
+         res.status(200).redirect('/users/dashboard');
+        
       } 
     } catch (error) {
       console.log(error);
@@ -49,7 +46,7 @@ exports.LoginUser = async (req, res) => {
 }
   exports.getDashboardPage=async (req,res)=>{
   
-    const user = await User.findOne({_id:req.session.userID})
+    const user = await User.findOne({_id:req.session.userID}).populate('courses')
     const categories = await Category.find()
     const courses = await Course.find({user:req.session.userID})
 

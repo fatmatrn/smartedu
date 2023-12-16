@@ -41,13 +41,32 @@ const UserSchema = new Schema({
 //     next();
 //   });
 // });
-UserSchema.pre('save',function(next){
-    const user = this;//o an kullanilacak olan user
-    bcrypt.hash(user.password,10,(error,hash)=>{
-        user.password=hash;
+// UserSchema.pre('save',function(next){
+//     const user = this;//o an kullanilacak olan user
+//     bcrypt.hash(user.password,10,(error,hash)=>{
+//         user.password=hash;
+//         next();
+//     })
+// })
+
+
+UserSchema.pre('save', function (next) {
+    const user = this; // O an kullanılacak olan user
+
+    // Eğer şifre değiştirilmişse veya kullanıcı yeni ise
+    if (user.isModified('password') || user.isNew) {
+        bcrypt.hash(user.password, 10, (error, hash) => {
+            if (error) {
+                return next(error);
+            }
+            user.password = hash;
+            next();
+        });
+    } else {
+        // Şifre değiştirilmemişse next fonksiyonunu doğrudan çağır
         next();
-    })
-})
+    }
+});
 
 const User = mongoose.model('User', UserSchema);
 

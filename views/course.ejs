@@ -15,6 +15,8 @@
 							<img src="/images/blog_single.jpg" alt="" class="img-fluid">
 						</div>
 						<div class="post-content">
+							<% if(user && !(user.courses.includes(course._id))){ %>
+
                         <div class="post-date">
 							<form action="/courses/enroll" method="post">
 								<input type="hidden" name="course_id"  value="<%= course._id %>">
@@ -23,7 +25,7 @@
 								</button>
 							</form>
 						</div>
-						
+						<%}%>
 							
 							
 							<div class="meta-info-blog">
@@ -63,7 +65,7 @@
 						<div class="site-search-area">
 							<form method="GET" id="site-searchform" action="/courses">
 								<div>
-									<input class="input-text form-control" name="search" id="search-k" placeholder="Search..." type="text">
+									<input class="input-text form-control" name="search" id="search-k" placeholder="Search" type="text">
 									<button id="searchsubmit" value="Search" type="submit"></button>
 								</div>
 							</form>
@@ -72,9 +74,11 @@
 					<div class="widget-categories">
 						<h3 class="widget-title">Categories</h3>
 						<ul>
-							
-						
-						
+							<li><a href="/courses">All Courses</a></li>
+							<% for (let i=0; i<categories.length; i++){ %>
+                            <li><a href="/courses?categories=<%= categories[i].slug %>"><%= categories[i].name %></a></li>
+							<%  }  %>
+	 						
 						</ul>
 					</div>
 				</div>

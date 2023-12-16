@@ -10,12 +10,12 @@ HTTP bunlarin konusma yontemleridir(get,post vs)
 HTTP kodlari ise duurm hakkinda bilgi doner
 
 
-200 - OK
-201 – Created
-404 – Not found
-500 – Internal Server Error
-201 – Created
-400 – Bad Request
-401 – Unauthorized
-403 – Forbidden
-501 – Not Implemented
+200 => OK
+201 => Created
+404 => Not found
+500 => Internal Server Error
+201 => Created
+400 => Bad Request
+401 => Unauthorized
+403 => Forbidden
+501 => Not Implemented
