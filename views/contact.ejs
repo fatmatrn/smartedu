@@ -18,6 +18,17 @@
                 <div class="offset-1 col-xl-10 col-md-10 col-sm-10">
                     
                     <!-- flash mesaji var ise gosterilmesi saglandi -->
+             <% if (flashMessage){%>
+             <% if (flashMessage.success){%>
+
+                <div  class="alert alert-success"> <%= flashMessage.success%></div>
+                <%}
+              else if (flashMessage.error){%>
+
+                <div  class="alert alert-danger"> <%= flashMessage.error%></div>
+                <%}%>
+                <%}%>
+             
              
                     
                     

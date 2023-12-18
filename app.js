@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoStore = require('connect-mongo');
 const bodyParser = require('body-parser')
+const flash = require('connect-flash');
 const pageRoute = require('./routes/pageRoute')
 const courseRoute = require('./routes/courseRoute')
 const categoryRoute = require('./routes/categoryRoute')
@@ -35,6 +36,14 @@ app.use(session({
   //cookie: { secure: true }   1.5   ten sonra zounlu olmadigindan kullamiytoruz
   store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1:27017/smartedu-db' })
 }))
+//mail bildirimi icin
+app.use(flash());
+//flash ta olusturacagimiz mesajlari flashMessage ye atayacagiz
+app.use((req,res,next)=>{
+  res.locals.flashMessage = req.flash();
+  next();
+
+})
 
 //Static Files
 app.use(express.static("public"));
