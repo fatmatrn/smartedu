@@ -72,7 +72,6 @@ exports.sendEmail = async (req, res) => {
       // NOTE: You can go to https://forwardemail.net/my-account/emails to see your email delivery status and preview
       //       Or you can use the "preview-email" npm package to preview emails locally in browsers and iOS Simulator
       //       <https://github.com/forwardemail/preview-email>
-      //       <https://github.com/forwardemail/preview-email>
       //
     }
 
