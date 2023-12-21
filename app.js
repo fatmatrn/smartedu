@@ -4,6 +4,9 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo');
 const bodyParser = require('body-parser')
 const flash = require('connect-flash');
+
+//İstemcinin desteklemediği yerlerde PUT veya DELETE gibi HTTP fiillerini kullanmanızı sağlar.
+const methodOverride = require('method-override')
 const pageRoute = require('./routes/pageRoute')
 const courseRoute = require('./routes/courseRoute')
 const categoryRoute = require('./routes/categoryRoute')
@@ -44,6 +47,9 @@ app.use((req,res,next)=>{
   next();
 
 })
+app.use(methodOverride('_method',{
+  methods : ['POST','GET']
+}))
 
 //Static Files
 app.use(express.static("public"));
